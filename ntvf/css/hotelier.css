@@ -1,0 +1,1820 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Global
+# Content
+	## Single Room
+	## Listing Page
+	## Booking Page
+# Widgets
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Global
+--------------------------------------------------------------*/
+
+/* Notices */
+
+.hotelier-info,
+.hotelier-error {
+  font-size: 12px;
+  font-size: 0.75rem;
+  color: #fff;
+  margin-bottom: 2.857em;
+  padding: 1.5em 2.5em;
+}
+
+.hotelier-info strong,
+.hotelier-error strong {
+  color: #fff;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.hotelier-info {
+  background-color: #c19c78;
+}
+
+.hotelier-error {
+  background-color: #FD5252;
+  list-style: none;
+  margin-left: 0;
+}
+
+/* Cart errors */
+
+.cart-errors {
+  font-size: 16px;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* No rooms found */
+
+.no-rooms-found {
+  font-size: 16px;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 5em;
+}
+
+/* Pagination */
+
+.hotelier-pagination ul {
+  margin: 0 0 3.571em;
+  padding: 0;
+}
+
+.hotelier-pagination li {
+  display: inline-block;
+  margin-right: .2em;
+}
+
+.hotelier-pagination ul .page-numbers {
+  font-size: 11px;
+  font-size: 0.6875rem;
+  background-color: #ebebeb;
+  color: #292b2c;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  padding: .8em 1.4em;
+  text-decoration: none;
+}
+
+.hotelier-pagination ul .page-numbers.current,
+.hotelier-pagination ul .page-numbers:hover {
+  background-color: #c19c78;
+  color: #fff;
+}
+
+/* Datepicker */
+
+#hotelier-datepicker {
+  margin-bottom: 2.857em;
+  position: relative;
+}
+
+#hotelier-datepicker #hotelier-datepicker-select {
+  color: #999;
+  font-weight: 700;
+  margin-bottom: 1em;
+  padding-left: 4em;
+  width: 100%;
+}
+
+#hotelier-datepicker .select-icon {
+  position: relative;
+}
+
+#hotelier-datepicker .select-icon:before {
+  font-size: 20px;
+  font-size: 1.25rem;
+  color: #c19c78;
+  content: '\f073';
+  font-family: 'FontAwesome';
+  left: 20px;
+  margin-top: -17px;
+  position: absolute;
+  top: 50%;
+}
+
+/* Hide/show inputs if JS is active/inactive */
+
+.js #hotelier-datepicker-checkin,
+.js #hotelier-datepicker-checkout {
+  display: none;
+}
+
+.no-js #hotelier-datepicker-select {
+  display: none;
+}
+
+.no-js #hotelier-datepicker .select-icon:before {
+  display: none;
+}
+
+.hdp-wrapper {
+  font-size: 12px;
+  font-size: 0.75rem;
+  background-color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  left: 0;
+  padding: 1.5em;
+  position: absolute;
+  width: 240px;
+  z-index: 999999;
+}
+
+.hdp-wrapper .month-name {
+  text-transform: uppercase;
+}
+
+.hdp-wrapper table {
+  width: 200px;
+}
+
+.hdp-wrapper table th,
+.hdp-wrapper table td {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.hdp-wrapper tr.week-name {
+  font-size: .7em;
+  text-transform: uppercase;
+}
+
+.hdp-wrapper tr.week-name th {
+  padding: .5em 0;
+}
+
+.hdp-wrapper .day {
+  padding: .5em;
+}
+
+.hdp-wrapper .day.invalid {
+  color: #ccc;
+}
+
+.hdp-wrapper .day.valid {
+  cursor: pointer;
+}
+
+.hdp-wrapper .day.checked {
+  background-color: rgba(193, 156, 120, 0.6);
+  color: #fff;
+}
+
+.hdp-wrapper .day.day.hovering {
+  background-color: rgba(193, 156, 120, 0.3);
+}
+
+.hdp-wrapper .day.day.nextMonth,
+.hdp-wrapper .day.day.lastMonth {
+  display: none;
+  height: 0;
+}
+
+.hdp-wrapper .day.real-today {
+  background-color: #292b2c;
+  color: #ebebeb;
+}
+
+.hdp-wrapper .day.real-today.checked {
+  background-color: rgba(193, 156, 120, 0.6);
+  color: #fff;
+}
+
+.hdp-wrapper .day.real-today.first-date-selected,
+.hdp-wrapper .day.real-today.last-date-selected {
+  background-color: #c19c78;
+}
+
+.hdp-wrapper .day.first-date-selected,
+.hdp-wrapper .day.last-date-selected {
+  background-color: #c19c78;
+}
+
+.hdp-wrapper tr.caption {
+  border-bottom: 1px solid #ebebeb;
+  height: 2.5em;
+}
+
+.hdp-wrapper .next,
+.hdp-wrapper .prev {
+  cursor: pointer;
+  padding: 0 .5em;
+  transition-duration: 0.2s;
+  transition-property: color, background-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hdp-wrapper .next:hover,
+.hdp-wrapper .prev:hover {
+  background-color: #c19c78;
+  color: #fff;
+}
+
+.hdp-wrapper.two-months.no-prev-next .month1 .next,
+.hdp-wrapper.two-months.no-prev-next .month2 .prev {
+  display: none;
+}
+
+.hdp-wrapper .selected-days {
+  display: none;
+}
+
+.hdp-wrapper .drp_top-bar {
+  font-style: italic;
+  margin-bottom: 1.5em;
+  padding: .7em 0;
+  text-align: left;
+}
+
+.hdp-wrapper .error-top,
+.hdp-wrapper .normal-top {
+  display: none;
+}
+
+.hdp-wrapper .error .default-top {
+  display: none;
+}
+
+.hdp-wrapper .error .error-top {
+  color: #FD5252;
+  display: block;
+}
+
+.hdp-wrapper .normal .default-top {
+  display: none;
+}
+
+.hdp-wrapper .normal .normal-top {
+  display: block;
+}
+
+.hdp-wrapper .apply-btn {
+  font-size: 11px;
+  font-size: 0.6875rem;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #c19c78;
+  color: #c19c78;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 0.2em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 9px;
+  font-size: 0.5625rem;
+  margin: 1em 0 0;
+}
+
+.hdp-wrapper .apply-btn:hover {
+  background-color: #c19c78;
+  color: #fff;
+}
+
+.hdp-wrapper .date-range-length-tip {
+  background-color: #292b2c;
+  border-radius: 2px;
+  color: #fff;
+  display: none;
+  font-size: .7em;
+  line-height: 16px;
+  margin-top: -14px;
+  padding: 5px 10px;
+  position: absolute;
+}
+
+.hdp-wrapper .date-range-length-tip:after {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #292b2c;
+  bottom: -4px;
+  content: '';
+  left: 50%;
+  margin-left: -4px;
+  position: absolute;
+}
+
+/* Room price */
+
+.price {
+  display: block;
+  font-weight: normal;
+  margin-bottom: .5em;
+}
+
+.price .amount {
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: -1px;
+}
+
+.price del {
+  color: inherit;
+  opacity: 0.5;
+}
+
+.price del .amount {
+  font-size: 14px;
+  font-size: 0.875rem;
+  border-bottom: none !important;
+}
+
+.price ins {
+  background: none;
+}
+
+/* Room deposit */
+
+.room-deposit,
+.rate-deposit {
+  font-size: 10px;
+  font-size: 0.625rem;
+  background-color: #ebebeb;
+  border-radius: 120px;
+  color: #292b2c;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  padding: .5em 2.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* Room loop (archive and shortcodes) */
+
+ul.rooms {
+  list-style: none;
+  margin-bottom: 2.857em;
+  margin-left: 0;
+  padding: 0;
+}
+
+ul.rooms:before,
+ul.rooms:after {
+  content: "";
+  display: table;
+  table-layout: fixed;
+}
+
+ul.rooms:after {
+  clear: both;
+}
+
+ul.rooms li.room h3 {
+  font-size: 12px;
+  font-size: 0.75rem;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+ul.rooms li.room .room-thumbnail {
+  display: block;
+  margin-bottom: 1.5em;
+}
+
+ul.rooms li.room .room-thumbnail img {
+  display: block;
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+  transition: -webkit-filter 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: filter 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: filter 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-filter 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+ul.rooms li.room .room-thumbnail:hover img {
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
+
+ul.rooms li.room .price {
+  font-size: 12px;
+  font-size: 0.75rem;
+  color: #999;
+  padding: .5em 0;
+}
+
+ul.rooms li.room .price .amount {
+  border-bottom: 2px solid #c19c78;
+  color: #292b2c;
+}
+
+ul.rooms li.room .view-room-details {
+  font-size: 11px;
+  font-size: 0.6875rem;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #c19c78;
+  color: #c19c78;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 0.2em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-size: 0.625rem;
+}
+
+ul.rooms li.room .view-room-details:hover {
+  background-color: #c19c78;
+  color: #fff;
+}
+
+/* Form fields */
+
+.hotelier .qty {
+  min-width: 50px;
+}
+
+.form-row abbr.required {
+  border-bottom: none;
+  color: #FD5252;
+}
+
+.form-row label {
+  display: block;
+}
+
+.form-row input[type="text"],
+.form-row input[type="number"],
+.form-row input[type="tel"],
+.form-row input[type="email"],
+.form-row input[type="url"],
+.form-row input[type="password"],
+.form-row input[type="search"],
+.form-row textarea {
+  width: 100%;
+}
+
+/* Reservation tables */
+
+table.hotelier-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-width: 1px 0 0 1px;
+  border-style: solid;
+  border-color: #ebebeb;
+}
+
+table.hotelier-table th,
+table.hotelier-table td {
+  border: 1px solid #ebebeb;
+  padding: 0.4375em;
+}
+
+table.hotelier-table th {
+  border-width: 0 1px 1px 0;
+  font-weight: 700;
+}
+
+table.hotelier-table td {
+  border-width: 0 1px 1px 0;
+}
+
+table.hotelier-table .room-qty {
+  width: 60px;
+}
+
+table.hotelier-table td.room-name a {
+  font-size: 11px;
+  font-size: 0.6875rem;
+  color: #292b2c;
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+table.hotelier-table td.room-name a:hover {
+  color: #c19c78;
+}
+
+table.hotelier-table .room-name small {
+  color: #999;
+  display: block;
+  font-family: "Lora", serif;
+  font-weight: 700;
+}
+
+table.hotelier-table .view-price-breakdown {
+  font-size: 9px;
+  font-size: 0.5625rem;
+  color: #292b2c;
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+}
+
+table.hotelier-table .view-price-breakdown:hover {
+  color: #c19c78;
+}
+
+table.hotelier-table .price_breakdown_td {
+  border: 0;
+  padding: 0;
+}
+
+table.hotelier-table .price_breakdown_td table {
+  font-size: 12px;
+  font-size: 0.75rem;
+  border-bottom: 1px solid #ebebeb;
+  border-collapse: separate;
+  border-right: 1px solid #ebebeb;
+  margin: 0;
+  padding: 1em;
+}
+
+table.hotelier-table .price_breakdown_td table th,
+table.hotelier-table .price_breakdown_td table td {
+  border: 0;
+  padding: 0.4375em 2em;
+}
+
+table.hotelier-table .price_breakdown_td table th.day,
+table.hotelier-table .price_breakdown_td table th.cost {
+  background-color: #292b2c;
+  color: #ebebeb;
+}
+
+table.hotelier-table .price_breakdown_td table th.day {
+  border-right: 1px solid #fff;
+}
+
+table.hotelier-table .price_breakdown_td table tr:nth-child(even) td {
+  background-color: #f5f5f5;
+}
+
+table.hotelier-table .price_breakdown_td table td.day {
+  border-right: 1px solid #fff;
+  font-style: italic;
+}
+
+/*--------------------------------------------------------------
+# Content
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+## Single Room
+--------------------------------------------------------------*/
+
+.single-room .post-thumbnail {
+  margin-bottom: 2.857em;
+  margin-top: 0;
+  position: relative;
+}
+
+.single-room .post-thumbnail img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.single-room .show-gallery {
+  font-size: 10px;
+  font-size: 0.625rem;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 120px;
+  bottom: 20px;
+  color: #292b2c;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  padding: .5em 2.5em;
+  position: absolute;
+  right: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.single-room .show-gallery:hover {
+  background-color: white;
+}
+
+.single-room .entry-header .entry-title {
+  margin-bottom: 1.5em;
+  text-align: center;
+}
+
+.single-room .room-meta-wrapper {
+  background-color: #292b2c;
+  color: #ebebeb;
+  margin-top: 4.286em;
+  padding: 6em 4em 4em;
+  position: relative;
+}
+
+.single-room .room-meta-wrapper:before {
+  border-left: 51px solid transparent;
+  border-right: 51px solid transparent;
+  border-top: 40px solid #fff;
+  content: '';
+  height: 0;
+  left: 50%;
+  margin-left: -51px;
+  position: absolute;
+  top: 0;
+  width: 0;
+  z-index: 1;
+}
+
+.single-room .room-meta-wrapper a,
+.single-room .room-meta-wrapper strong {
+  color: #fff;
+}
+
+.single-room .room-meta-wrapper a:hover {
+  color: #c19c78;
+}
+
+.single-room .room-meta-wrapper h3 {
+  font-size: 12px;
+  font-size: 0.75rem;
+  border-bottom: 2px solid #c19c78;
+  color: #fff;
+  display: inline-block;
+  margin-bottom: 1.5em;
+  padding: .65em 0;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.single-room .room-details {
+  text-align: center;
+}
+
+.single-room .room-details .room-price {
+  margin-bottom: 0;
+}
+
+.single-room .room-details .room-price .price {
+  font-size: 16px;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.single-room .room-details .room-price .amount {
+  font-size: 36px;
+  font-size: 2.25rem;
+  border-bottom: 5px solid #c19c78;
+  font-style: normal;
+}
+
+.single-room .available-rates {
+  margin-bottom: 0;
+  margin-top: 1.5em;
+}
+
+.single-room .available-rates a {
+  font-size: 10px;
+  font-size: 0.625rem;
+  background-color: #ebebeb;
+  border-radius: 120px;
+  color: #292b2c;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  padding: .5em 2.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.single-room .available-rates a:hover {
+  background-color: #292b2c;
+  color: #ebebeb;
+}
+
+.single-room .room-deposit {
+  margin-top: 2.1em;
+}
+
+.single-room .room-meta ul,
+.single-room .room-conditions ul {
+  font-style: italic;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.single-room .room-meta {
+  margin-bottom: 1.786em;
+}
+
+.single-room .room-meta strong {
+  font-style: normal;
+}
+
+.single-room .room-facilities {
+  font-style: italic;
+}
+
+.single-room .room-facilities h3 {
+  font-style: normal;
+}
+
+.single-room .room-facilities p {
+  margin-bottom: 0;
+}
+
+.single-room .room-conditions {
+  margin-top: 1.786em;
+}
+
+.single-room .room-description {
+  margin-bottom: 2.857em;
+  margin-top: 2.857em;
+}
+
+.single-room.no-sidebar .room-meta-wrapper:after {
+  background-color: #292b2c;
+  bottom: 0;
+  content: '';
+  left: -9999px;
+  position: absolute;
+  right: -9999px;
+  top: 0;
+  z-index: -1;
+}
+
+.single-room .room-rates {
+  background-color: #f5f5f5;
+  padding: 4.357em 2.5em;
+}
+
+.single-room .room-rates h3 {
+  font-size: 16px;
+  font-size: 1rem;
+  margin-bottom: 2.5em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.single-room .room-rates .rate-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.single-room .room-rates .room-single-rate {
+  background-color: #fff;
+  margin-bottom: 1.5em;
+  padding: 2.5em 2.5em 1em;
+}
+
+.single-room .room-rates .room-single-rate:last-child {
+  margin-bottom: 0;
+}
+
+.single-room .room-rates .rate-name {
+  font-size: 12px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.single-room .room-rates .rate-description {
+  color: #999;
+}
+
+.single-room .room-rates .rate-price {
+  margin-bottom: 1.5em;
+}
+
+.single-room .room-rates .rate-price .price {
+  font-style: italic;
+}
+
+.single-room .room-rates .rate-price .amount {
+  border-bottom: 3px solid #c19c78;
+  font-style: normal;
+}
+
+.single-room .room-rates .rate-conditions span {
+  font-weight: 700;
+}
+
+.single-room .room-rates .rate-conditions ul {
+  color: #c19c78;
+  font-style: italic;
+  margin-left: 0;
+}
+
+.single-room .room-rates .rate-deposit {
+  margin-bottom: 2.1em;
+}
+
+.single-room.no-sidebar .room-rates {
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+}
+
+.single-room.no-sidebar .room-rates:after {
+  background-color: #f5f5f5;
+  bottom: 0;
+  content: '';
+  left: -9999px;
+  position: absolute;
+  right: -9999px;
+  top: 0;
+  z-index: -1;
+}
+
+.related-rooms > h3 {
+  font-size: 12px;
+  font-size: 0.75rem;
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 2.5em;
+  padding: .65em 0;
+  text-transform: uppercase;
+}
+
+.room-rates + .related-rooms {
+  margin-top: 3.707em;
+}
+
+/*--------------------------------------------------------------
+## Listing Page
+--------------------------------------------------------------*/
+
+.hotelier-listing .selected-nights {
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  margin-bottom: .5em;
+  text-transform: uppercase;
+}
+
+.hotelier-listing .selected-nights:before {
+  font-size: 18px;
+  font-size: 1.125rem;
+  color: #c19c78;
+  content: "\f14a";
+  font-family: 'FontAwesome';
+  margin-right: .75em;
+}
+
+form.room-list {
+  background-color: #f5f5f5;
+  margin-top: 2.857em;
+  padding: 2em;
+  position: relative;
+}
+
+form.room-list:before {
+  background-color: #ebebeb;
+  content: '';
+  display: block;
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: -2.857em;
+}
+
+form.room-list #reserve-rooms-button {
+  text-align: right;
+}
+
+form.room-list ul.rooms li.room {
+  background-color: #fff;
+  border: 4px solid #fff;
+  margin-bottom: 1.5em;
+  margin-right: 0;
+  padding: 2em 1.5em;
+  text-align: center;
+  transition-duration: 0.2s;
+  transition-property: border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+
+form.room-list ul.rooms li.room.selected_room {
+  border-color: #c19c78;
+}
+
+form.room-list ul.rooms li.room .room-thumbnail {
+  margin-bottom: .5em;
+  margin-top: 2em;
+}
+
+form.room-list ul.rooms li.room .room-thumbnail img {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 85px;
+}
+
+form.room-list ul.rooms li.room .price {
+  font-size: 14px;
+  font-size: 0.875rem;
+  color: #242424;
+  font-style: italic;
+  padding-top: 0;
+}
+
+form.room-list ul.rooms li.room .price .amount {
+  font-style: normal;
+}
+
+form.room-list ul.rooms li.room .price-description {
+  font-size: 12px;
+  font-size: 0.75rem;
+  display: block;
+  font-style: italic;
+  margin-bottom: 1.5em;
+  margin-top: -1em;
+}
+
+form.room-list .only-x-left {
+  font-size: 10px;
+  font-size: 0.625rem;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #c19c78;
+  color: #c19c78;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  letter-spacing: 1px;
+  margin-bottom: 1em;
+  padding: 0.2em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+form.room-list .quantity {
+  margin-bottom: 1em;
+}
+
+form.room-list .add-to-cart-selected {
+  font-size: 9px;
+  font-size: 0.5625rem;
+  display: block;
+}
+
+form.room-list .more-about-room a {
+  font-size: 10px;
+  font-size: 0.625rem;
+  color: #292b2c;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+}
+
+form.room-list .more-about-room a:hover {
+  color: #c19c78;
+}
+
+form.room-list .show-gallery {
+  font-size: 10px;
+  font-size: 0.625rem;
+  color: #292b2c;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+form.room-list .show-gallery:hover {
+  color: #c19c78;
+}
+
+form.room-list .room-description {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: #999;
+  margin-top: 1.5em;
+}
+
+form.room-list .room-meta-wrap {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: #999;
+}
+
+form.room-list .room-meta-wrap > div:last-child {
+  margin-bottom: 1.5em;
+}
+
+form.room-list .room-meta p {
+  margin-bottom: 0;
+}
+
+form.room-list .room-conditions {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  margin-bottom: 1.5em;
+}
+
+form.room-list .room-conditions ul {
+  color: #c19c78;
+  font-style: italic;
+  margin-left: 0;
+}
+
+form.room-list .room-deposit {
+  margin-bottom: 1.5em;
+}
+
+form.room-list .room-max-guests {
+  margin-bottom: .5em;
+}
+
+form.room-list .room-max-guests .max {
+  display: inline-block;
+  text-indent: -9999px;
+}
+
+form.room-list .room-max-guests .max:after {
+  color: #c19c78;
+  content: '\f007';
+  float: left;
+  font-family: 'FontAwesome';
+  letter-spacing: 3px;
+  text-indent: 0;
+}
+
+form.room-list .room-max-guests .max.max2:after {
+  content: '\f007\f007';
+}
+
+form.room-list .room-max-guests .max.max3:after {
+  content: '\f007\f007\f007';
+}
+
+form.room-list .room-max-guests .max.max4:after {
+  content: '\f007\f007\f007\f007';
+}
+
+form.room-list .room-max-guests .max.max5:after {
+  content: '\f007\f007\f007\f007\f007';
+}
+
+form.room-list .room-max-guests .max.max6:after {
+  content: '\f007\f007\f007\f007\f007\f007';
+}
+
+form.room-list .room-max-guests .max.max7:after {
+  content: '\f007\f007\f007\f007\f007\f007\f007';
+}
+
+form.room-list .room-max-guests .max.max8:after {
+  content: '\f007\f007\f007\f007\f007\f007\f007\f007';
+}
+
+form.room-list .room-max-guests .max.max9:after {
+  content: '\f007\f007\f007\f007\f007\f007\f007\f007\f007';
+}
+
+form.room-list .room-max-guests .max.max10:after {
+  content: '\f007\f007\f007\f007\f007\f007\f007\f007\f007\f007';
+}
+
+form.room-list .rate-room {
+  font-size: 12px;
+  font-size: 0.75rem;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+form.room-list .rate-name {
+  color: #999;
+  display: block;
+  font-weight: 700;
+  margin-bottom: .75em;
+}
+
+form.room-list .rate-description {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: #999;
+}
+
+form.room-list .room-variations {
+  padding-top: 1.5em;
+}
+
+form.room-list .room-single-variation {
+  border-top: 1px solid #ebebeb;
+  padding: 1.5em 0;
+}
+
+/*--------------------------------------------------------------
+## Booking Page
+--------------------------------------------------------------*/
+
+#guest-additional-information,
+#booking-details,
+#booking-table,
+#request-booking,
+#payment {
+  margin-top: 2.857em;
+}
+
+#guest-additional-information label {
+  display: inline;
+  margin-right: 1em;
+}
+
+#guest-additional-information .description {
+  font-size: 12px;
+  font-size: 0.75rem;
+  display: block;
+  font-style: italic;
+}
+
+#booking-details table td {
+  font-style: italic;
+}
+
+#booking-details .hotelier-accepted-credit-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#booking-details .hotelier-accepted-credit-cards .card-icon {
+  display: inline-block;
+  height: 48px;
+  margin-bottom: .175em;
+  position: relative;
+  text-indent: -99999px;
+  width: 76px;
+}
+
+#booking-details .hotelier-accepted-credit-cards .card-icon:before {
+  background-color: #fff;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  border: 1px solid #eee;
+  content: '';
+  display: inline-block;
+  height: 48px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 76px;
+}
+
+#booking-details .hotelier-accepted-credit-cards .card-icon.mastercard:before {
+  background-image: url(../../../plugins/hotelier/assets/images/cards/mastercard.svg);
+}
+
+#booking-details .hotelier-accepted-credit-cards .card-icon.amex:before {
+  background-image: url(../../../plugins/hotelier/assets/images/cards/amex.svg);
+}
+
+#booking-details .hotelier-accepted-credit-cards .card-icon.cirrus:before {
+  background-image: url(../../../plugins/hotelier/assets/images/cards/cirrus.svg);
+}
+
+#booking-details .hotelier-accepted-credit-cards .card-icon.discover:before {
+  background-image: url(../../../plugins/hotelier/assets/images/cards/discover.svg);
+}
+
+#booking-details .hotelier-accepted-credit-cards .card-icon.maestro:before {
+  background-image: url(../../../plugins/hotelier/assets/images/cards/maestro.svg);
+}
+
+#booking-details .hotelier-accepted-credit-cards .card-icon.visa:before {
+  background-image: url(../../../plugins/hotelier/assets/images/cards/visa.svg);
+}
+
+#booking-details .hotelier-accepted-credit-cards .card-icon.visa_e:before {
+  background-image: url(../../../plugins/hotelier/assets/images/cards/visa_e.svg);
+}
+
+#payment .payment-methods {
+  list-style: none;
+  margin: 0 0 2.857em;
+  padding: 0;
+}
+
+#payment .payment-methods li {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 1em 2em;
+}
+
+#payment .payment-methods li img {
+  float: right;
+}
+
+#payment .payment-methods .single input[type="radio"] {
+  display: none;
+}
+
+.reservation-response {
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+ul.reservation-details {
+  background-color: #292b2c;
+  color: #fff;
+  list-style: none;
+  margin-left: 0;
+  padding: 2em 2.5em;
+}
+
+ul.reservation-details li {
+  background-color: #292b2c;
+  color: #fff;
+}
+
+ul.reservation-details strong {
+  color: #c19c78;
+  padding-left: .3em;
+}
+
+ul.reservation-details .checkin strong span,
+ul.reservation-details .checkout strong span {
+  color: #fff;
+  font-style: italic;
+  font-weight: 400;
+}
+
+ul.reservation-details .special-requests {
+  margin-top: 2em;
+}
+
+ul.reservation-details .special-requests strong {
+  border-bottom: 2px solid #c19c78;
+  color: #fff;
+  padding-left: 0;
+}
+
+ul.reservation-details .special-requests span {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: #ebebeb;
+  display: block;
+  margin-top: 1em;
+}
+
+table.guest-details td {
+  font-style: italic;
+}
+
+.hotelier-booking .entry-content header {
+  margin-top: 2.857em;
+}
+
+.hotelier-booking .entry-content h3 {
+  font-size: 12px;
+  font-size: 0.75rem;
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 2.5em;
+  padding: .65em 0;
+  text-transform: uppercase;
+}
+
+.hotelier-booking .entry-content address {
+  background-color: #f5f5f5;
+  padding: 2em 2.5em;
+}
+
+/*--------------------------------------------------------------
+# Widgets
+--------------------------------------------------------------*/
+
+/* Search */
+
+.widget-hotelier-search input[type="search"] {
+  margin-bottom: 0;
+}
+
+.widget-hotelier-search input[type="submit"] {
+  display: none;
+}
+
+/* Rooms filter */
+
+.widget-hotelier-rooms-filter .rooms-filter {
+  margin-bottom: 2.5em;
+}
+
+.widget-hotelier-rooms-filter .filter-label {
+  font-size: 10px;
+  font-size: 0.625rem;
+  background-color: #c19c78;
+  color: #fff;
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  margin-bottom: 1em;
+  padding: .5em 1em;
+  text-transform: uppercase;
+}
+
+.widget-hotelier-rooms-filter .filter-label:before {
+  content: '\f0d7';
+  font-family: 'FontAwesome';
+  margin-right: 1em;
+}
+
+.widget-hotelier-rooms-filter a {
+  font-size: 10px;
+  font-size: 0.625rem;
+  color: #292b2c;
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  margin-bottom: .3em;
+  padding-left: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.widget-hotelier-rooms-filter a:before {
+  font-size: 16px;
+  font-size: 1rem;
+  color: #ebebeb;
+  content: '\f0c8';
+  font-family: 'FontAwesome';
+  margin-right: 1em;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.widget-hotelier-rooms-filter li:hover a {
+  color: #c19c78;
+}
+
+.widget-hotelier-rooms-filter li:hover a:before {
+  color: #c19c78;
+  content: '\f0fe';
+}
+
+.widget-hotelier-rooms-filter li.chosen a:before {
+  color: #c19c78;
+  content: '\f14a';
+}
+
+.widget-hotelier-rooms-filter li.chosen a:hover:before {
+  color: #c19c78;
+  content: '\f146';
+}
+
+/* Booking widget */
+
+.widget-hotelier-booking .change-cart {
+  font-size: 10px;
+  font-size: 0.625rem;
+  background-color: #292b2c;
+  color: #ebebeb;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  padding: .3em 1em;
+  text-transform: uppercase;
+}
+
+.widget-hotelier-booking .change-cart:hover {
+  background-color: #c19c78;
+  color: #fff;
+}
+
+.widget-hotelier-booking p {
+  margin-bottom: .5em;
+}
+
+.widget-hotelier-booking .dates {
+  background-color: #f5f5f5;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  margin-bottom: 2.5em;
+  padding: 1em 2em 1.5em;
+  text-transform: uppercase;
+}
+
+.widget-hotelier-booking .date-label {
+  font-size: 9px;
+  font-size: 0.5625rem;
+  color: #999;
+  margin-bottom: 1em;
+}
+
+.widget-hotelier-booking .date-block {
+  background-color: #fff;
+  padding: .5em 1.5em;
+}
+
+.widget-hotelier-booking .month-year,
+.widget-hotelier-booking .day-name {
+  font-size: 10px;
+  font-size: 0.625rem;
+  display: block;
+}
+
+.widget-hotelier-booking .day {
+  font-size: 26px;
+  font-size: 1.625rem;
+}
+
+.widget-hotelier-booking .checkin,
+.widget-hotelier-booking .checkout {
+  display: inline-block;
+  text-align: center;
+}
+
+.widget-hotelier-booking .room-list-widget li {
+  font-size: 11px;
+  font-size: 0.6875rem;
+  border-bottom: 1px solid #ebebeb;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: .5em;
+  padding-bottom: .5em;
+  text-transform: uppercase;
+}
+
+.widget-hotelier-booking .room-list-widget a {
+  color: #292b2c;
+}
+
+.widget-hotelier-booking .room-list-widget a:hover {
+  color: #c19c78;
+}
+
+.widget-hotelier-booking .room-list-widget small {
+  font-size: 11px;
+  font-size: 0.6875rem;
+  color: #999;
+  display: block;
+  font-family: "Lora", serif;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.widget-hotelier-booking .total {
+  font-style: italic;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.widget-hotelier-booking .amount {
+  font-size: 18px;
+  font-size: 1.125rem;
+  border-bottom: 2px solid #c19c78;
+  color: #292b2c;
+  float: right;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  letter-spacing: -1px;
+}
+
+@media (min-width: 320px) {
+  .hdp-wrapper {
+    width: 300px;
+  }
+
+  .hdp-wrapper .month-wrapper {
+    position: relative;
+  }
+
+  .hdp-wrapper table {
+    width: 260px;
+  }
+}
+
+@media (min-width: 450px) {
+  #hotelier-datepicker #hotelier-datepicker-select {
+    width: 320px;
+  }
+
+  #hotelier-datepicker .select-icon:after {
+    content: '';
+    display: block;
+  }
+}
+
+@media (min-width: 480px) {
+  .hdp-wrapper {
+    width: 460px;
+  }
+
+  .hdp-wrapper .month-wrapper {
+    position: relative;
+  }
+
+  .hdp-wrapper .month-wrapper:before {
+    background: #ebebeb;
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    width: 1px;
+  }
+
+  .hdp-wrapper .month1 {
+    float: left;
+  }
+
+  .hdp-wrapper .month2 {
+    float: right;
+  }
+
+  .hdp-wrapper table {
+    width: 200px;
+  }
+
+  ul.rooms li.room {
+    clear: both;
+    float: left;
+    margin: 0 4% 1.5em 0;
+    padding: 0;
+    width: 48%;
+  }
+
+  ul.rooms li.room:nth-child(even) {
+    clear: none;
+    margin-right: 0;
+  }
+
+  .columns-1 ul.rooms li.room {
+    clear: both;
+    float: left;
+    margin: 0 4% 1.5em 0;
+    padding: 0;
+    position: relative;
+    width: 48%;
+  }
+
+  .columns-1 ul.rooms li.room:nth-child(even) {
+    clear: none;
+    margin-right: 0;
+  }
+
+  table.hotelier-table .price_breakdown_td table {
+    padding: 1em 5em;
+  }
+}
+
+@media (min-width: 768px) {
+  #hotelier-datepicker #hotelier-datepicker-select {
+    margin-bottom: 0;
+  }
+
+  #hotelier-datepicker #datepicker-button {
+    margin-left: 2em;
+  }
+
+  #hotelier-datepicker .select-icon:after {
+    display: none;
+  }
+
+  .hdp-wrapper {
+    width: 560px;
+  }
+
+  .hdp-wrapper table {
+    width: 240px;
+  }
+
+  .hdp-wrapper .drp_top-bar {
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 0;
+    padding: 1em 2em 1em 0;
+    position: relative;
+  }
+
+  .hdp-wrapper .apply-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  ul.rooms li.room {
+    clear: none;
+    margin-right: 4%;
+  }
+
+  ul.rooms li.room:nth-child(even) {
+    margin-right: 4%;
+  }
+
+  ul.rooms li.first {
+    clear: both !important;
+  }
+
+  ul.rooms li.last {
+    margin-right: 0 !important;
+  }
+
+  .columns-3 ul.rooms li.room {
+    width: 30.66%;
+  }
+
+  .columns-4 ul.rooms li.room {
+    width: 22%;
+  }
+
+  .columns-5 ul.rooms li.room {
+    width: 16.8%;
+  }
+
+  .form-row.form-row-first {
+    clear: both;
+    float: left;
+    margin-right: 4%;
+    width: 48%;
+  }
+
+  .form-row.form-row-last {
+    float: right;
+    width: 48%;
+  }
+
+  .single-room .room-single-rate {
+    overflow: hidden;
+  }
+
+  .single-room .rate-description-wrapper {
+    float: left;
+    padding-right: 4%;
+    width: 60%;
+  }
+
+  .single-room .rate-price-wrapper {
+    float: right;
+    position: relative;
+    text-align: right;
+    width: 40%;
+  }
+
+  .single-room .rate-price-wrapper:before {
+    background-color: #f5f5f5;
+    bottom: -999px;
+    content: '';
+    display: block;
+    left: 0;
+    position: absolute;
+    top: -999px;
+    width: 1px;
+  }
+
+  form.room-list li.room,
+  form.room-list .room-single-variation {
+    overflow: hidden;
+    position: relative;
+  }
+
+  form.room-list .room-gallery {
+    left: 1.5em;
+    position: absolute;
+    top: 2em;
+  }
+
+  form.room-list ul.rooms li.room {
+    text-align: left;
+  }
+
+  form.room-list ul.rooms li.room .room-thumbnail {
+    margin-top: 0;
+  }
+
+  form.room-list .room-content {
+    float: left;
+    padding-left: 105px;
+    padding-right: 4%;
+    width: 70%;
+  }
+
+  form.room-list .room-actions {
+    float: right;
+    position: relative;
+    text-align: right;
+    width: 30%;
+  }
+
+  form.room-list .room-single-variation .room-content {
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .hotelier-pagination ul {
+    margin-bottom: 5em;
+  }
+
+  .single-room .post-thumbnail {
+    margin-bottom: 4.286em;
+  }
+
+  .single-room .entry-header .entry-title {
+    font-size: 28px;
+    font-size: 1.75rem;
+  }
+
+  .single-room #hotelier-datepicker {
+    text-align: center;
+  }
+
+  .single-room .room-meta-wrapper {
+    padding: 6em 8em 4em;
+  }
+
+  .single-room .room-description {
+    margin-top: 4.286em;
+  }
+
+  .single-room.left-sidebar .rate-description-wrapper,
+  .single-room.right-sidebar .rate-description-wrapper {
+    width: 50%;
+  }
+
+  .single-room.left-sidebar .rate-price-wrapper,
+  .single-room.right-sidebar .rate-price-wrapper {
+    width: 50%;
+  }
+
+  form.room-list .room-content {
+    width: 65%;
+  }
+
+  form.room-list .room-actions {
+    width: 35%;
+  }
+
+  .widget-hotelier-booking p {
+    text-align: right;
+  }
+
+  .widget-hotelier-booking .dates {
+    display: block;
+    padding: 1em 1em 1.5em;
+  }
+
+  .widget-hotelier-booking .date-block {
+    padding: .5em 1em;
+  }
+
+  .widget-hotelier-booking .dates {
+    overflow: hidden;
+  }
+
+  .widget-hotelier-booking .checkin {
+    float: left;
+  }
+
+  .widget-hotelier-booking .checkout {
+    float: right;
+  }
+}
+
+@media (min-width: 1200px) {
+  .single-room .rate-price-wrapper:before {
+    left: 50px;
+  }
+
+  form.room-list .room-content {
+    padding-left: 105px;
+    width: 70%;
+  }
+
+  form.room-list .room-actions {
+    width: 30%;
+  }
+
+  .widget-hotelier-booking .dates {
+    padding: 1em 2em 1.5em;
+  }
+
+  .widget-hotelier-booking .date-block {
+    padding: .5em 1.5em;
+  }
+}

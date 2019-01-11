@@ -1,0 +1,18 @@
+div.tabs-panel {
+    min-height: 42px;
+    max-height: 600px !important; 
+    overflow: auto;
+    padding: 0 .9em;
+    border: 1px solid #ddd;
+    background-color: #fdfdfd;
+}
+.hide_checkbox {
+    visibility: hidden;
+}
+.category_parent {
+    background-color: #f5f5e9;
+    font-weight: bold;
+}
+#categorychecklist {
+    font-size: 10px;
+}

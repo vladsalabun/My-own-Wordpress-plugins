@@ -1,0 +1,61 @@
+#activityBlog {
+    width: 100%;
+    overflow: hidden;
+}
+.weekCol {
+    width: 10px;
+    float: left; 
+    margin: 1px;                
+}
+.weekCell {
+    width: 10px;
+    height: 10px;
+    margin: 2px;
+    font-size: 17px;
+    text-align: center;
+}
+.countLevel { background-color: #ebedf0; }
+.countLevel0 { background-color: #ebedf0; }
+.countLevel1 { background-color: #d6f29e; }
+.countLevel2 { background-color: #d0ec98; }
+.countLevel3 { background-color: #c2df89; }
+.countLevel4 { background-color: #b9d581; }
+.countLevel5 { background-color: #b4d17c; }
+.countLevel6 { background-color: #acc874; }
+.countLevel7 { background-color: #9fbb67; }
+.countLevel8 { background-color: #95b15e; }
+.countLevel9 { background-color: #8ba656; }
+.countLevel10 { background-color: #829c4e; }
+.countLevel11 { background-color: #86da79; }
+.countLevel12 { background-color: #79cd6d; }
+.countLevel13 { background-color: #6cbc5f; }
+.countLevel14 { background-color: #60ac54; }
+.countLevel15 { background-color: #579f4b; }
+.countLevel16 { background-color: #4f9244; }
+.countLevel17 { background-color: #3c7933; }
+.countLevel18 { background-color: #2e6326; }
+.countLevel19 { background-color: #196127; }
+.countLevel20 { background-color: #fdff70; }
+.countLevel21 { background-color: #fdff55; }
+.countLevel22 { background-color: #fafc44; }
+.countLevel23 { background-color: #fbfd2d; }
+.countLevel24 { background-color: #fcff00; }
+.countLevel25 { background-color: #fff04c; }
+.countLevel26 { background-color: #feed2e; }
+.countLevel27 { background-color: #ffec13; }
+.countLevel28 { background-color: #ffda2f; }
+.countLevel29 { background-color: #ffd306; }
+.countLevel30 { background-color: #ffc000; }
+.countLevel31 { background-color: #ffb400; }
+.countLevel32 { background-color: #ffa200; }
+.countLevel33 { background-color: #ff9000; }
+.countLevel34 { background-color: #ff8400; }
+.countLevel35 { background-color: #ff7200; }
+.countLevel36 { background-color: #ff6c00; }
+.countLevel37 { background-color: #ff5a00; }
+.countLevel38 { background-color: #ff4200; }
+.countLevel39 { background-color: #ff3000; }
+.countLevel40 { background-color: #ff0600; }
+.countLevelMax{
+   background-color: #1f1f1f;
+}
