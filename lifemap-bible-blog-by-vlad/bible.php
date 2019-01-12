@@ -42,7 +42,7 @@ Author URI: http://salabun.com/
         );
         
         // Модифікую тільки в циклах і постах:
-        if ( is_single() or in_the_loop() ) {
+        if ( is_single() or in_the_loop() or is_page('multicat') ) {
             
             // Підключаю парсер:
             

@@ -48,7 +48,7 @@ Author URI: http://salabun.com/
     function filter_the_content_in_the_main_loop_378745( $content ) {
      
         // Модифікую тільки в циклах і постах:
-        if ( is_single() or in_the_loop() ) {
+        if ( is_single() or in_the_loop() or is_page('multicat') ) {
             
             // Паршу:
             $html = lmImageLightBox\str_get_html($content);
