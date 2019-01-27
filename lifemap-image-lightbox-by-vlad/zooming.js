@@ -614,8 +614,8 @@ var target = {
     var _instance$options2 = this.instance.options,
         customSize = _instance$options2.customSize,
         scaleBase = _instance$options2.scaleBase;
-
-
+        
+        
     if (!customSize && zoomingHeight && zoomingWidth) {
       return {
         x: zoomingWidth / this.rect.width,
@@ -629,6 +629,7 @@ var target = {
     } else {
       var targetHalfWidth = this.rect.width / 2;
       var targetHalfHeight = this.rect.height / 2;
+      
       var windowCenter = getWindowCenter();
 
       // The distance between target edge and window edge
@@ -643,6 +644,7 @@ var target = {
       // The additional scale is based on the smaller value of
       // scaling horizontally and scaling vertically
       var scale = scaleBase + Math.min(scaleHorizontally, scaleVertically);
+      
 
       if (customSize && typeof customSize === 'string') {
         // Use zoomingWidth and zoomingHeight if available
@@ -650,7 +652,7 @@ var target = {
         var naturalHeight = zoomingHeight || this.el.naturalHeight;
         var maxZoomingWidth = parseFloat(customSize) * naturalWidth / (100 * this.rect.width);
         var maxZoomingHeight = parseFloat(customSize) * naturalHeight / (100 * this.rect.height);
-
+        
         // Only scale image up to the specified customSize percentage
         if (scale > maxZoomingWidth || scale > maxZoomingHeight) {
           return {
@@ -659,7 +661,7 @@ var target = {
           };
         }
       }
-
+      
       return {
         x: scale,
         y: scale

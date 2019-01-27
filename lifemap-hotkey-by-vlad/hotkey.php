@@ -32,23 +32,37 @@
         2) Функція переходу по навігації має спрацьовувати тільки 1 раз, в JS ф-я debounce дозволяє управляти запуском функцій
     */
 
+    // Змінна, яка прийме значення true, коли буде натиснута керуюча клавіша:
+    var oneKey = false;
+    
     // Новий пост:
-    key('n', function(){ 
-        document.location.href = '<?php echo get_site_url();?>/wp-admin/post-new.php'; 
-        return false 
+    key('n', function(){
+        if(!oneKey) {
+            document.location.href = '<?php echo get_site_url();?>/wp-admin/post-new.php'; 
+            return false 
+            oneKey = true;
+        }
     });
     // Рандомний пост:
     key('r', function(){ 
         document.location.href = '<?php echo get_site_url();?>/random'; 
         return false 
     });
+    
     key('right', function(){ 
-        // наступний пост:
-        document.location.href = document.getElementsByClassName('nextpostslink')[0].href;
-    });   
+        if(!oneKey) {
+            // наступний пост:
+            document.location.href = document.getElementsByClassName('nextpostslink')[0].href;
+            oneKey = true;
+        }
+    });  
+    
     key('left', function(){ 
-        // попередній пост:
-        document.location.href = document.getElementsByClassName('previouspostslink')[0].href;
+        if(!oneKey) {
+            // попередній пост:
+            document.location.href = document.getElementsByClassName('previouspostslink')[0].href;
+            oneKey = true;
+        }
     });     
     key('enter', function(){ 
         // попередній пост:
@@ -77,6 +91,7 @@
         return false 
     }); 
 
+    //debounce(key, 1000);
     // id: #sample-permalink
     
 </script>
