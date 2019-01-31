@@ -32,7 +32,8 @@ Author URI: http://salabun.com/
                         'OptAlign.oa_oquote_extra' => 'off',
                         'OptAlign.oa_obracket_coma' => 'off',
                         'OptAlign.oa_oquote' => 'off',
-                        
+                        'Abbr.nbsp_money_abbr' => 'off',
+                        'Etc.split_number_to_triads' => 'off',
                     )
                 )
             );
