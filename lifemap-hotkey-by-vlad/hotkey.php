@@ -81,7 +81,8 @@
    
     // Редагувати пост:
     key('e', function(){ 
-        document.location.href = document.getElementsByClassName('editPostHiddenLink')[0].href;
+        //document.location.href = document.getElementsByClassName('editPostHiddenLink')[0].href;
+        window.open(document.getElementsByClassName('editPostHiddenLink')[0].href,'_blank');
         return false 
     });
 
@@ -95,8 +96,12 @@
     // id: #sample-permalink
     
 </script>
-    <?php edit_post_link( $link, $before, $after, $id, 'editPostHiddenLink' ); ?>
-<?php
+    
+     
+<?php 
+        
+        edit_post_link( '', '', '', '', 'editPostHiddenLink' ); 
+        
     }
     
     # Підключення хоткеїв для адмінки:

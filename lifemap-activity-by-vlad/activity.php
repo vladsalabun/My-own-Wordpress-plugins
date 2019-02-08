@@ -122,14 +122,22 @@
                 
                 if($daysCount > $realDay) {
                     
-                    $c = $yearDayNumber[$realDay];
-                    
-                    if($c > 40) {
-                        $countLevel = 'countLevelMax';
+                    if(isset($yearDayNumber[$realDay])){
+                        $c = $yearDayNumber[$realDay];
+                        
+                        if($c > 40) {
+                            $countLevel = 'countLevelMax';
+                        } else {
+                            $countLevel = 'countLevel'.$c;
+                        }
+                        $string .= '<a href="http://diary.yy/archives/date/'.$currentYear.'/'.$monthString.'/'.$dayString.'">
+                            <div class="weekCell '.$countLevel.'" title="Дописів: '.$c.' / '.$dateString.'" data-toggle="tooltip" data-placement="top"></div>
+                        </a>';
                     } else {
-                        $countLevel = 'countLevel'.$c;
+                        $string .= '<a href="http://diary.yy/archives/date/'.$currentYear.'/'.$monthString.'/'.$dayString.'">
+                            <div class="weekCell countLevel" title="" data-toggle="tooltip" data-placement="top"></div>
+                        </a>';
                     }
-                    $string .= '<a href="http://diary.yy/archives/date/'.$currentYear.'/'.$monthString.'/'.$dayString.'"><div class="weekCell '.$countLevel.'" title="Дописів: '.$c.' / '.$dateString.'" data-toggle="tooltip" data-placement="top"></div></a>';
 
                 }
                 $realDay++;
@@ -140,15 +148,17 @@
         $string .= '</div>';
         
         // Якщо є публікації в цей день за минулі роки:
-        if(count($lastYearPosts) > 0) {
-            
-            $string .= '<h2>Публікації цього дня за '.$currentYear.' рік:</h2><ol>';
-            
-            foreach ($lastYearPosts as $key => $value) {
-                $string .= '<li>'.$value.'</li>';
+        if(isset($lastYearPosts)) {
+            if(count($lastYearPosts) > 0) {
+                
+                $string .= '<h2>Публікації цього дня за '.$currentYear.' рік:</h2><ol>';
+                
+                foreach ($lastYearPosts as $key => $value) {
+                    $string .= '<li>'.$value.'</li>';
+                }
+                
+                $string .= '</ol>';
             }
-            
-            $string .= '</ol>';
         }
         
         return $string;

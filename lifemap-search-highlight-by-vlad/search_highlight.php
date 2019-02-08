@@ -10,7 +10,7 @@
    ## Функция для подсветки слов поиска в WordPress
     add_filter('the_content', 'kama_search_backlight');
     add_filter('the_excerpt', 'kama_search_backlight');
-   add_filter('the_title', 'kama_search_backlight');
+    add_filter('the_title', 'kama_search_backlight');
 
     function kama_search_backlight( $text ){
         
@@ -28,8 +28,19 @@
             return $text;
         } else {
             $query_terms = get_query_var('search_terms');
-            if( empty($query_terms) ) $query_terms = array(get_query_var('s'));
-            if( empty($query_terms) ) return $text;
+            
+            // Якщо передано порожній пошуковий запит, то повертаємо текст як є:
+            if( empty($query_terms) ) {
+                $query_terms = array(get_query_var('s'));
+                return $text;
+            }
+            
+            // Фікс, якщо передано порожній пошуковий запит, або пробіл, то повертаємо текст як є:
+            $stringQuery = implode($query_terms,',');
+            if( strlen($stringQuery) < 1 or $stringQuery == ' '  ) {
+                return $text;
+            }
+
 
             $n = 0;
             foreach( $query_terms as $term ){
