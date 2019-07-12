@@ -107,7 +107,10 @@ function hook_antibrootforce() {
         $login_count = lm_getLastLoginCount($_SERVER['REMOTE_ADDR']);
 
         if($login_count > $login_defence_max_log_try) {
+            // Відключаю сторінку логіну:
             add_filter( 'wp_login_errors', 'my_login_form_lock_down2', 90, 2 );
+            // Зупиняю програму для цього ІР і не записую більше його спроби:
+            die();
         }
     }
 }
