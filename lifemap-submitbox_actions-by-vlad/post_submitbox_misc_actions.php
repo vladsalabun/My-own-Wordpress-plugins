@@ -19,6 +19,9 @@
             #save-post,#post-preview,#minor-publishing-actions {
                 display:none !important;
             }
+            .submitdelete, .deletion {
+                display:none !important;
+            }
 
         </style>';
 <?php    
@@ -27,14 +30,18 @@
     // Додаю свійт текст у пост-метабокс:
     add_action( 'post_submitbox_misc_actions', 'action_function_name_3962' );
     function action_function_name_3962( $post ){
+        
         // action...
-        echo '<div class="misc-pub-section">      
+        echo '
+<div class="misc-pub-section">  
+<!---    
 <b>I</b> - на сайт<br>
 <b>N</b> - нова публікація<br>
 <b>Enter</b> - опублікувати<br>
-<b>Right</b> - переглянути публікацію<br>
-<b>Del</b> - видалити публікацію<br>
-        
+<b>Right</b> - переглянути пост<br>
+
+<b>Delete</b> - видалити пост<br>
+-->      
         </div>';
     }
 
@@ -47,12 +54,10 @@
     }
 */
 
-/*    
+    
     // Текст перед самою кнопкою "опубликовать":
     add_action( 'post_submitbox_start', 'action_function_name_11' );
     function action_function_name_11() {
-        echo "<p>Текст перед кнопкой. Вместо этого текста мы можем, например,
-        добавить дополнительную кнопку, по нажатию на которую 
-        как-то по особенному обрабатывать публикацию.</p>";
+        echo "Delete - видалити";
     }
-*/
+

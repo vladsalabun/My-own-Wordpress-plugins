@@ -55,3 +55,13 @@
             round( memory_get_peak_usage()/1024/1024, 2 )
         );
     }
+    
+    
+/**
+ *  Приховуємо версію ВП:
+ */ 
+function true_remove_wp_version_wp_head_feed() {
+	return '';
+}
+ 
+add_filter('the_generator', 'true_remove_wp_version_wp_head_feed');
