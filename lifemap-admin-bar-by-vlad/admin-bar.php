@@ -123,7 +123,7 @@
         width: 20px;
         margin: 7px 0 7px 5px;
     }
-	</style>';
+	</style>
 <?php
     }  
     

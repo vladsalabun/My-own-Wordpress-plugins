@@ -23,7 +23,7 @@
                 display:none !important;
             }
 
-        </style>';
+        </style>
 <?php    
     }
     
