@@ -139,6 +139,12 @@ function hook_log_user_activity() {
         // Якщо користувач не увійшов:
         if ( is_user_logged_in() ) {
             
+            // Якщо немає куків, логаут:
+            if(!isset($_COOKIE['frozen_cookie'])) {
+                wp_logout();
+                die();
+            }
+            
             // Дізнаюсь чи є останній лог:
             $last_activity_time = get_last_user_activity();
             

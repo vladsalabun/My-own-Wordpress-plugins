@@ -2,7 +2,7 @@
 /*
     Plugin Name: Антибрутфорс
     Plugin URI: https://salabun.com
-    Description: Захист сторінки входу. Логує спроби входу і блокує доступ після невірних 10 спроб. А якщо вхід успішний, то висилає сповіщення на пошту і в telegram.
+    Description: Захист сторінки входу. Логує спроби входу і блокує доступ після невірних 10 спроб.
     Author: Vlad Salabun
     Version: 1.0
     Author URI: https://salabun.com
@@ -11,7 +11,7 @@
     # Налаштування:
     $login_defence_table = 'login_defence_log';
     $login_defence_max_log_count = 300;
-    $login_defence_max_log_try = 4;
+    $login_defence_max_log_try = 10;
     $login_defence_max_delay = 1800; // секунд
 
 
@@ -111,6 +111,7 @@ function hook_antibrootforce() {
             // Відключаю сторінку логіну:
             add_filter( 'wp_login_errors', 'my_login_form_lock_down2', 90, 2 );
             // Зупиняю програму для цього ІР і не записую більше його спроби:
+            require_once 'def_page.php';
             die();
         }
     }
