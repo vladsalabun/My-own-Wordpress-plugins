@@ -7,7 +7,15 @@
     Version: 1.0
     Author URI: https://salabun.com
 */
-   
+    
+    require_once 'vendor/autoload.php';
+    require_once 'mySQL_backup_tool.php';
+
+    // Максимальное время выполнения скрипта:
+    ini_set('max_execution_time', 3600); // в секундах
+    
+    // Максимальная память, доступная скрипту:
+    ini_set('memory_limit','512M');
     
 /**
  *      Налаштування:
@@ -161,7 +169,8 @@
         last_post_id int(11) default '0',
         backup_date int(11) default '0',
         deleted_time int(11) default '0',
-
+        download_db_link varchar(255) NULL,
+        download_files_link varchar(255) NULL,
         PRIMARY KEY  (id),
         KEY id (id)
         )
@@ -191,6 +200,11 @@
  */
     require_once 'admin_pages/pages.php';
 
+    
+/**
+ *      Програма:
+ */
+    require_once 'mainController.php';
 
 
 

@@ -1,0 +1,8 @@
+{
+    "require": {
+        "nelexa/zip": "^3.1",
+        "friday14/cloud-mail-ru": "dev-master",
+        "google/cloud": "^0.105.0",
+        "arhitector/yandex": "dev-master"
+    }
+}
