@@ -84,11 +84,21 @@
         }
     }
     
+    
+    /** 
+     *  Тут костиль для ссилок майл ру:
+     */
     function m_cloud_share_file($cloud,$cloud_file_location) {
 
         // Сделать файл общедоступным и получить ссылку на файл
         try {
-            return $cloud->getLink($cloud_file_location);
+            $string = $cloud->getLink($cloud_file_location);
+            //$string = str_replace('thumb.','',$string);
+            //$string = str_replace('weblink/thumb/xw1','public',$string);
+            $parts = explode('/',$string);
+            $string = 'https://cloud.mail.ru/public/'.$parts[count($parts) - 2].'/'.$parts[count($parts) - 1];
+            
+            return $string;
         } catch (Exception $e) {
             // Если не расшарить файл:
             return false;

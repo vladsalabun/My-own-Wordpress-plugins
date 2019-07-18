@@ -85,8 +85,11 @@ function wrong_login_and_password_handler( $username ){
 add_action( 'wp_login', 'action_function_name_9084', 10, 2 );
 
 function action_function_name_9084( $user_login, $user ){
-	// TODO: сповістити в телеграм і на почту
-    
+	// сповістити в телеграм і на почту
+    if (function_exists('v_TG_notofication')) {
+        $tg_message = 'WP-LOGIN: Успішний вхід з IP: '. $_SERVER['REMOTE_ADDR'];
+        v_TG_notofication($tg_message);
+    }
 }
 
 
@@ -112,6 +115,13 @@ function hook_antibrootforce() {
             add_filter( 'wp_login_errors', 'my_login_form_lock_down2', 90, 2 );
             // Зупиняю програму для цього ІР і не записую більше його спроби:
             require_once 'def_page.php';
+            
+            if (function_exists('v_TG_notofication')) {
+                $tg_message = 'WP-DEFENCE: Заблоковано доступ для IP: '. $_SERVER['REMOTE_ADDR'];
+                v_TG_notofication($tg_message);
+            }
+            
+            
             die();
         }
     }

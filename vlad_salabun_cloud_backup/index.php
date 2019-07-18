@@ -95,8 +95,8 @@
                     'remote_disk_space' => 0,
                     'backup_frequency' => 3,
                     'simultaneously_stored_quantity' => 30,
-                    'db_switch' => 1,
-                    'files_switch' => 1,
+                    'db_switch' => 0,
+                    'files_switch' => 0,
                 ),
             'yandex_disk' =>
                 array(
@@ -106,8 +106,8 @@
                     'remote_disk_space' => 0,
                     'backup_frequency' => 3,
                     'simultaneously_stored_quantity' => 30,
-                    'db_switch' => 1,
-                    'files_switch' => 1,
+                    'db_switch' => 0,
+                    'files_switch' => 0,
                 ),
             'google_drive' =>
                 array(
@@ -117,8 +117,8 @@
                     'remote_disk_space' => 0,
                     'backup_frequency' => 3,
                     'simultaneously_stored_quantity' => 30,
-                    'db_switch' => 1,
-                    'files_switch' => 1,
+                    'db_switch' => 0,
+                    'files_switch' => 0,
                 ),
         );
         
@@ -168,7 +168,7 @@
         db_backup_time int(11) default '0',
         last_post_id int(11) default '0',
         backup_date int(11) default '0',
-        deleted_time int(11) default '0',
+        deleted_time int(11) default NULL,
         download_db_link varchar(255) NULL,
         download_files_link varchar(255) NULL,
         PRIMARY KEY  (id),

@@ -26,7 +26,11 @@
     register_deactivation_hook( __FILE__, 'freeze_activity_deactivation_notify' );
 
     function freeze_activity_deactivation_notify() {
-        // TODO: сповіщення
+        // сповіщення
+        if (function_exists('v_TG_notofication')) {
+            $tg_message = 'WP-FREEZE: Деактивовано плагін Lock activity.';
+            v_TG_notofication($tg_message);
+        }
     }
    
         
@@ -376,7 +380,11 @@ function freezeHandler() {
         // Записую активність одразу:
         log_activity_now();
         
-        // TODO: сповістити в телеграмі і на почту.
+        // сповістити в телеграмі:
+        if (function_exists('v_TG_notofication')) {
+            $tg_message = 'WP-FREEZE: Доступ відновлено.';
+            v_TG_notofication($tg_message);
+        }
         
     } else {
 
@@ -400,9 +408,14 @@ function freezeHandler() {
             // Вийди з системи:
             echo 'access denied';
             setcookie("frozen_cookie", '', 0); 
-            wp_logout();
             
-            // TODO: сповістити в телеграмі
+            // сповістити в телеграмі
+            if (function_exists('v_TG_notofication')) {
+                $tg_message = 'WP-FREEZE: Пароль невірний. wp_logout!';
+                v_TG_notofication($tg_message);
+            }
+            
+            wp_logout();
             
         } else {
             // Повертаю кількість спроб:
@@ -498,7 +511,7 @@ function freeze_param_to_footer() {
 /**
  *  Оновлення налаштувань:
  */
-add_action( 'admin_post_update_freeze_options',    'update_freeze_options' );
+add_action( 'admin_post_update_freeze_options', 'update_freeze_options' );
 function update_freeze_options() {
     
     global $wpdb;
