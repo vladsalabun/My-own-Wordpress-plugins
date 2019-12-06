@@ -1,8 +1,8 @@
 <?php
 /*
     Plugin Name: LM Activity
-    Description: Графічне відображення кількості публікацій у блозі по дням за рік
-    Version: 1.3
+    Description: Графічне відображення кількості публікацій у блозі по дням за рік (додав кеш)
+    Version: 1.4
     Author: Vlad Salabun
     Author URI: http://salabun.com/
 */
@@ -40,6 +40,14 @@
    
     function show_my_activity($startYear = null) {
 
+        // 6 грудня 2019 р.
+        // пробуем получить кэш и вернем его если он есть
+        $cache_key = 'showMyActivity_'.$startYear.'_Cache';
+        if( $cachedString = getVladCache($cache_key) ) {
+            return $cachedString;
+        }
+    
+    
         if($startYear) {
             $currentYear = $startYear;
         } else {
@@ -161,7 +169,11 @@
             }
         }
         
+        // добавим данные в кэш
+        addVladCache($cache_key, $string);
+        
         return $string;
+        
     }
     
     // Скільки днів у році:

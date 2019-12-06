@@ -1,6 +1,6 @@
 <?php
 /*
-    Plugin Name: LM Disable updates
+    Plugin Name: Disable updates
     Description: Відключення оновлень. Пришвидшує завантаження сайту
     Version: 1.0
     Author: Vlad Salabun
